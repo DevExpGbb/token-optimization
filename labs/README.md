@@ -22,7 +22,7 @@ Attendees will learn how to:
 - A GitHub account and access to an AI coding/chat tool.
 - A small sample repository with issues, tests, documentation, and a few realistic defects.
 - Optional: access to organization billing, Copilot usage, cloud AI usage, or model provider dashboards.
-- Optional: W&B Weave, LangSmith, promptfoo, OpenAI Evals, Azure AI Evaluation, or another eval/observability tool.
+- Microsoft Waza and the Chat Customizations Evaluations extensions for VS Code for the Chapter 8 eval lab.
 
 ## Delivery formats
 

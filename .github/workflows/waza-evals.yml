@@ -1,0 +1,55 @@
+name: Waza Evals
+
+on:
+  pull_request:
+    paths:
+      - ".github/agents/**"
+      - ".github/instructions/**"
+      - ".github/prompts/**"
+      - ".github/skills/**"
+      - "evals/**"
+      - "skills/**"
+      - "labs/08-ai-evals-and-observability.md"
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/agents/**"
+      - ".github/instructions/**"
+      - ".github/prompts/**"
+      - ".github/skills/**"
+      - "evals/**"
+      - "skills/**"
+      - "labs/08-ai-evals-and-observability.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    name: Run Waza eval suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Waza
+        run: curl -fsSL https://raw.githubusercontent.com/microsoft/waza/main/install.sh | bash
+
+      - name: Verify Waza
+        run: waza --version
+
+      - name: Run Waza
+        run: |
+          mkdir -p waza-results
+          waza run evals/token-optimization/eval.yaml \
+            --verbose \
+            --output waza-results/results.json \
+            --reporter junit:waza-results/results.xml
+
+      - name: Upload Waza results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waza-results
+          path: waza-results/

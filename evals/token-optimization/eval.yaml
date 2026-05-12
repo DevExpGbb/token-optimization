@@ -1,0 +1,25 @@
+name: token-optimization-eval
+description: Evaluation suite for token optimization workshop customizations.
+skill: token-optimization
+version: "1.0"
+
+config:
+  executor: mock
+  model: mock-model
+  trials_per_task: 1
+  timeout_seconds: 300
+  parallel: false
+
+graders:
+  - type: text
+    name: mentions_context_quality
+    config:
+      regex_match:
+        - "(?i)(context|token|fixture|prompt|instruction)"
+  - type: behavior
+    name: bounded_tool_use
+    config:
+      max_tool_calls: 5
+
+tasks:
+  - "tasks/*.yaml"
