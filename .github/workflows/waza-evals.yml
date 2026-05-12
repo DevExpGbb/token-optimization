@@ -34,7 +34,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Waza
-        run: curl -fsSL https://raw.githubusercontent.com/microsoft/waza/main/install.sh | bash
+        env:
+          WAZA_INSTALL_COMMIT: bf77c759d6bee3ba578c1980fa8a176fe8d014e4
+          WAZA_INSTALL_SHA256: f9f949c8ef7ed4e3309cee3f1285d2f7a7dea6db1c965ceab09443d3c7910d7a
+        run: |
+          curl -fsSL \
+            "https://raw.githubusercontent.com/microsoft/waza/${WAZA_INSTALL_COMMIT}/install.sh" \
+            -o install-waza.sh
+          echo "${WAZA_INSTALL_SHA256}  install-waza.sh" | sha256sum -c -
+          bash install-waza.sh
 
       - name: Verify Waza
         run: waza --version
