@@ -21,7 +21,7 @@ This repository includes the minimum workspace artifacts Waza and VS Code custom
 - `.github/skills/token-optimization.skill.md` as a workspace skill customization.
 - `.github/prompts/context-triage.prompt.md` as a reusable prompt.
 - `.github/instructions/token-optimization.instructions.md` as shared instructions.
-- `.github/agents/token-eval-reviewer.agent.md` as a VS Code custom agent.
+- `.github/agents/token-eval-reviewer.agent.md` as a VS Code agent customization.
 - `evals/token-optimization/eval.yaml` and task files for Waza.
 - `.github/workflows/waza-eval-suite.yml` to run the eval suite in Actions.
 
