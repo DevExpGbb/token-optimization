@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "microsoft-learn": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp?maxTokenBudget=2000"
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "-m",
+        "markitdown_mcp"
+      ]
+    }
+  }
+}

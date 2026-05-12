@@ -17,6 +17,39 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080` in a browser.
 
+## Copilot primitives
+
+This repo now includes a minimal set of Copilot customization assets for building workshop-ready token optimization content:
+
+- `.github/copilot-instructions.md` for concise repository guidance
+- `.github/agents/workshop-content-builder.agent.md` for GPT-5.5 content creation across labs, decks, and teaching materials
+- `.github/agents/cost-rubber-duck.agent.md` for Claude Opus 4.7 second-opinion reviews
+- `.github/prompts/build-workshop-content.prompt.md` for repeatable workshop-content generation
+- `.github/skills/source-material-ingestion/SKILL.md` for `.pptx` and `.csv` ingestion workflows
+- `.github/skills/workshop-authoring/SKILL.md` for labs, decks, and facilitator material workflows
+- `.vscode/mcp.json` for Microsoft Learn and source-file ingestion via MarkItDown MCP
+
+### Why skills here
+
+The repo uses small project skills for workflows that should only load when relevant. That keeps always-on instructions shorter and aligns with the token-optimization guidance taught by the workshop.
+
+### Tool setup notes
+
+- The explicit file-ingestion tool is `markitdown` in `.vscode/mcp.json`.
+- This is **not** a native built-in reader in the repo by itself. `.vscode/mcp.json` only declares the MCP server the client should use.
+- Use MarkItDown to open and convert both `.pptx` and `.csv` files into markdown before reusing them in labs, prompts, or presentations.
+- Install MarkItDown MCP with PPTX support before using the PowerPoint reader flow:
+
+  ```bash
+  pip install "markitdown[pptx]" markitdown-mcp
+  ```
+
+- After the MCP server is installed and your Copilot client loads workspace MCP servers, pass in a `.pptx` or `.csv` file by attaching the file or by asking the agent to read that file path with the `markitdown` tool.
+- Use Microsoft Learn MCP for current Microsoft guidance.
+- CSV support is included in MarkItDown's core text-based format handling.
+- Treat PPTX conversion as full textual extraction for slides, tables, and reusable deck content, not full-fidelity inspection of animations, embedded media, or every binary object.
+- Use the agent's web tools for current GitHub documentation when the answer depends on latest behavior.
+
 ## Workshop goals
 
 - Help customers reduce avoidable AI usage and improve answer quality.
