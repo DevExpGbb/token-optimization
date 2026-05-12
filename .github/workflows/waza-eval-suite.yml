@@ -36,6 +36,7 @@ jobs:
       - name: Install Waza
         env:
           # Pinned to a reviewed Microsoft Waza install script commit; update the commit and SHA-256 together.
+          # SHA-256 verified for this exact install.sh content on 2026-05-12.
           WAZA_INSTALL_COMMIT: bf77c759d6bee3ba578c1980fa8a176fe8d014e4
           WAZA_INSTALL_SHA256: f9f949c8ef7ed4e3309cee3f1285d2f7a7dea6db1c965ceab09443d3c7910d7a
         run: |
