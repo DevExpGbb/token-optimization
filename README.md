@@ -25,7 +25,13 @@ This repo now includes a minimal set of Copilot customization assets for buildin
 - `.github/agents/workshop-content-builder.agent.md` for GPT-5.5 content creation across labs, decks, and teaching materials
 - `.github/agents/cost-rubber-duck.agent.md` for Claude Opus 4.7 second-opinion reviews
 - `.github/prompts/build-workshop-content.prompt.md` for repeatable workshop-content generation
+- `.github/skills/source-material-ingestion/SKILL.md` for `.pptx` and `.csv` ingestion workflows
+- `.github/skills/workshop-authoring/SKILL.md` for labs, decks, and facilitator material workflows
 - `.vscode/mcp.json` for Microsoft Learn and source-file ingestion via MarkItDown MCP
+
+### Why skills here
+
+The repo uses small project skills for workflows that should only load when relevant. That keeps always-on instructions shorter and aligns with the token-optimization guidance taught by the workshop.
 
 ### Tool setup notes
 
