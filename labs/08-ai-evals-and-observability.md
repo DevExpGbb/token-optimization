@@ -4,9 +4,9 @@
 
 Token optimization should be measured. AI evals help teams compare prompts, instructions, models, memories, and tool configurations using repeatable examples instead of anecdotes.
 
-## Interpreting "waza"
+## Candidate eval platform: W&B Weave
 
-If "waza" referred to W&B, consider Weights & Biases Weave for tracing, prompt/model comparison, and qualitative evaluation workflows. Confirm the intended tool name with the customer before presenting it as a requirement.
+Consider W&B Weave for tracing, prompt and model comparison, qualitative review, and lightweight observability. If a customer already uses another eval platform, keep the workshop tool-agnostic and focus on repeatable datasets, rubrics, and decision criteria.
 
 ## What to evaluate
 
