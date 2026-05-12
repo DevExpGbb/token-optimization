@@ -60,9 +60,12 @@ The repo uses small project skills for workflows that should only load when rele
 ## Contents
 
 - [`labs/README.md`](labs/README.md) - overview, prerequisites, and timed agendas
-- [`decks/token-optimization-context-engineering.pptx`](decks/token-optimization-context-engineering.pptx) - starter delivery deck
+- [`decks/token-optimization-context-engineering.pptx`](decks/token-optimization-context-engineering.pptx) - primary workshop delivery deck with embedded speaker notes
+- [`decks/token-optimization-context-engineering.executive.pptx`](decks/token-optimization-context-engineering.executive.pptx) - executive briefing visual variant
+- [`decks/token-optimization-context-engineering.technical.pptx`](decks/token-optimization-context-engineering.technical.pptx) - technical deep dive visual variant
 - [`decks/token-optimization-context-engineering.outline.md`](decks/token-optimization-context-engineering.outline.md) - editable delivery deck outline
 - [`decks/token-optimization-context-engineering.speaker-notes.md`](decks/token-optimization-context-engineering.speaker-notes.md) - speaker notes for the delivery deck
+- [`tools/generate_context_deck.py`](tools/generate_context_deck.py) - regenerates the styled PPTX variants from the Markdown sources
 - [`resources/copilot-surface-matrix.md`](resources/copilot-surface-matrix.md) - living reference for Copilot surfaces and context controls
 - [`resources/context-inventory-worksheet.md`](resources/context-inventory-worksheet.md)
 - [`resources/instruction-diet-worksheet.md`](resources/instruction-diet-worksheet.md)
@@ -82,3 +85,14 @@ The repo uses small project skills for workflows that should only load when rele
 - [`labs/10-next-steps-and-extra-topics.md`](labs/10-next-steps-and-extra-topics.md)
 - [`labs/11-copilot-surfaces-and-context-boundaries.md`](labs/11-copilot-surfaces-and-context-boundaries.md)
 - [`labs/12-customer-environment-review.md`](labs/12-customer-environment-review.md)
+
+## Regenerating the deck
+
+The PPTX files are generated from the Markdown outline and speaker notes so content remains easy to review.
+
+```powershell
+python -m pip install -r requirements-dev.txt
+python tools\generate_context_deck.py
+```
+
+The generator produces workshop, executive briefing, and technical deep dive variants. All generated PPTX files include embedded PowerPoint speaker notes from `decks/token-optimization-context-engineering.speaker-notes.md`.

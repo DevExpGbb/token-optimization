@@ -10,12 +10,22 @@ Use Copilot CLI as the reference implementation because it exposes context, tool
 
 | Artifact | Use |
 | --- | --- |
-| `decks/token-optimization-context-engineering.pptx` | Starter live presentation |
+| `decks/token-optimization-context-engineering.pptx` | Primary workshop presentation with embedded speaker notes |
+| `decks/token-optimization-context-engineering.executive.pptx` | Executive briefing visual variant |
+| `decks/token-optimization-context-engineering.technical.pptx` | Technical deep dive visual variant |
 | `decks/token-optimization-context-engineering.outline.md` | Source outline for deck edits |
-| `decks/token-optimization-context-engineering.speaker-notes.md` | Presenter notes |
+| `decks/token-optimization-context-engineering.speaker-notes.md` | Presenter notes embedded into generated PPTX files |
+| `tools/generate_context_deck.py` | Regenerates all deck variants from the Markdown sources |
 | `labs/README.md` | Track selection and student entry point |
 | `resources/copilot-surface-matrix.md` | Living surface reference |
 | `resources/*-worksheet.md` | Hands-on and customer review worksheets |
+
+## Deck format options
+
+- Use the workshop deck for the standard 1, 2, and 4-hour deliveries.
+- Use the executive briefing variant when the audience needs a cleaner leadership narrative before hands-on material.
+- Use the technical deep dive variant when the room is mostly engineers and the discussion will focus on controls, workflows, and review mechanics.
+- Regenerate all variants after deck edits with `python tools\generate_context_deck.py`.
 
 ## Delivery tracks
 

@@ -1,6 +1,6 @@
 # Token Optimization and Context Engineering across GitHub Copilot
 
-Source outline for the delivery deck. Keep this file easy to diff; regenerate the `.pptx` delivery artifact after major edits.
+Source outline for the delivery deck. Keep this file easy to diff; regenerate the `.pptx` delivery artifacts after major edits with `python tools\generate_context_deck.py`.
 
 ## Slide 1: Title
 

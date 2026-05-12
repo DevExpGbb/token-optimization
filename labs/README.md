@@ -72,7 +72,9 @@ Recommended chapters: all chapters. Use the customer preflight checklist and fal
 
 ## Student materials
 
-- [`../decks/token-optimization-context-engineering.pptx`](../decks/token-optimization-context-engineering.pptx) - starter delivery deck
+- [`../decks/token-optimization-context-engineering.pptx`](../decks/token-optimization-context-engineering.pptx) - primary workshop delivery deck with embedded speaker notes
+- [`../decks/token-optimization-context-engineering.executive.pptx`](../decks/token-optimization-context-engineering.executive.pptx) - executive briefing visual variant
+- [`../decks/token-optimization-context-engineering.technical.pptx`](../decks/token-optimization-context-engineering.technical.pptx) - technical deep dive visual variant
 - [`../decks/token-optimization-context-engineering.outline.md`](../decks/token-optimization-context-engineering.outline.md) - editable deck source
 - [`../resources/copilot-surface-matrix.md`](../resources/copilot-surface-matrix.md) - living surface reference
 - [`../resources/context-inventory-worksheet.md`](../resources/context-inventory-worksheet.md)

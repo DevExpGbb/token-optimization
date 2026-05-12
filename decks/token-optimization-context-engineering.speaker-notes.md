@@ -1,5 +1,7 @@
 # Speaker Notes: Token Optimization and Context Engineering
 
+These notes are embedded into the generated PPTX variants by `python tools\generate_context_deck.py`.
+
 ## Slide 1
 
 Open by saying this is not a "use less Copilot" session. It is a "get better answers with less waste" session.
