@@ -8,9 +8,11 @@ Instructions, custom agents, memory, repository guidance, and tool configuration
 
 - Organization or team instructions.
 - Repository instructions such as coding standards and security rules.
+- Path-specific instructions for file types, folders, or review concerns.
 - Agent definitions and specialized roles.
 - Personal preferences and saved memories.
 - Prompt templates and reusable task checklists.
+- Skills for detailed workflows that should load only when relevant.
 
 ## Good instruction patterns
 
@@ -19,6 +21,7 @@ Instructions, custom agents, memory, repository guidance, and tool configuration
 - Keep instructions short enough that developers can review them.
 - Use positive, concrete rules: "Prefer small diffs" instead of "Do not make huge changes."
 - Include source-of-truth links rather than copying long policy text.
+- Split targeted guidance into `.github/instructions/**/*.instructions.md`, prompt files, skills, or agents instead of growing one always-on file.
 
 ## Bad instruction patterns
 
@@ -46,6 +49,10 @@ Better:
 3. Separate rules into: coding style, testing, security, documentation, and review.
 4. Remove any rule that cannot be observed in a diff or answer.
 5. Ask an AI assistant to perform a small task with and without the instruction set.
+
+## Code review note
+
+Copilot code review has product-specific instruction behavior. As of 2026-05-12, GitHub Docs state that code review reads only the first 4,000 characters of custom instruction files and uses instructions from the pull request base branch. Re-verify this before delivery and keep review-focused instructions concise.
 
 ## Customer relationship message
 
