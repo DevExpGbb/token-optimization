@@ -4,6 +4,8 @@ skill: token-optimization
 version: "1.0"
 
 config:
+  # Use mock for pull request validation. For real model runs, change this to
+  # the executor and credential setup documented at https://microsoft.github.io/waza/.
   executor: mock
   model: mock-model
   trials_per_task: 1

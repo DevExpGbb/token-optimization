@@ -76,4 +76,4 @@ Use the Chat Customizations Evaluations extensions for VS Code to help customers
 
 ## Practical recommendation
 
-Use Waza evals to justify changes to model routing, instruction files, prompt templates, agent definitions, MCP configuration, and memory strategy. Keep the eval data small, explicit, customer-owned, and safe to run in CI.
+Use Waza evals to justify changes to model routing, instruction files, prompt templates, agent definitions, Model Context Protocol (MCP) configuration, and memory strategy. Keep the eval data small, explicit, customer-owned, and safe to run in CI.
