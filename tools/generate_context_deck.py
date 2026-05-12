@@ -8,6 +8,8 @@ import zipfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+from tempfile import NamedTemporaryFile
+from xml.sax.saxutils import escape
 
 from pptx import Presentation
 from pptx.dml.color import RGBColor
@@ -264,7 +266,7 @@ def add_card(
     card = add_shape(slide, MSO_SHAPE.ROUNDED_RECTANGLE, x, y, w, h, fill or theme.card)
     if title:
         add_text(slide, title, x + 0.22, y + 0.17, w - 0.44, 0.36, theme, size=title_size, bold=True, color_value=theme.title)
-        if body:
+        if body and h > 0.84:
             body_box = slide.shapes.add_textbox(Inches(x + 0.18), Inches(y + 0.62), Inches(w - 0.36), Inches(h - 0.74))
             add_multiline_text(body_box, body, theme, size=body_size, numbered=numbered)
     elif body:
@@ -376,7 +378,7 @@ def add_surface_matrix_slide(slide, spec: SlideSpec, theme: Theme, index: int, t
         x = 0.75 + col * 4.15
         y = 1.86 + row * 2.0
         add_card(slide, x, y, 3.7, 1.48, theme, fill=theme.card, title=name.strip(), body=[detail.strip()], title_size=16, body_size=13)
-    add_card(slide, 4.9, 5.8, 3.7, 0.72, theme, fill=theme.card_alt, title="Facilitator cue", body=["Use CLI as the visible reference implementation."], title_size=13, body_size=11)
+    add_card(slide, 4.9, 5.65, 3.7, 0.92, theme, fill=theme.card_alt, title="Facilitator cue", body=["Use CLI as the visible reference implementation."], title_size=13, body_size=11)
     add_footer(slide, index, total, theme)
 
 
@@ -428,7 +430,7 @@ def add_exercise_slide(slide, spec: SlideSpec, theme: Theme, index: int, total: 
         add_shape(slide, MSO_SHAPE.OVAL, x, y, 0.55, 0.55, theme.accent2 if item_index % 2 else theme.accent)
         add_text(slide, str(item_index + 1), x, y + 0.11, 0.55, 0.22, theme, size=12, bold=True, color_value=color("#ffffff"), align=PP_ALIGN.CENTER)
         add_card(slide, x + 0.72, y - 0.02, 4.9, 1.18, theme, fill=theme.card, title=bullet, body=[], title_size=15)
-    add_card(slide, 0.78, 6.0, 11.65, 0.48, theme, fill=theme.card_alt, title="Output", body=["A smaller, safer context plan students can reuse after the workshop."], title_size=12, body_size=11)
+    add_card(slide, 0.78, 5.92, 11.65, 0.78, theme, fill=theme.card_alt, title="Output: a smaller, safer context plan students can reuse after the workshop.", body=[], title_size=12, body_size=11)
     add_footer(slide, index, total, theme)
 
 
@@ -524,8 +526,101 @@ def build_deck(theme: Theme, slides: list[SlideSpec]) -> Path:
 
     output_path = DECKS_DIR / theme.output_name
     prs.save(output_path)
+    normalize_powerpoint_package(output_path, slides)
     validate_deck(output_path, slides)
     return output_path
+
+
+def build_app_properties(slides: list[SlideSpec]) -> bytes:
+    titles = ["Office Theme", *[slide.title for slide in slides]]
+    paragraphs = sum(len(slide.bullets) for slide in slides) + len(slides)
+    words = sum(len(re.findall(r"\w+", " ".join([slide.title, *slide.bullets, slide.notes]))) for slide in slides)
+    title_parts = "\n".join(f"        <vt:lpstr>{escape(title)}</vt:lpstr>" for title in titles)
+
+    xml = f"""<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+  <Template/>
+  <TotalTime>0</TotalTime>
+  <Words>{words}</Words>
+  <Application>Microsoft PowerPoint</Application>
+  <PresentationFormat>On-screen Show (16:9)</PresentationFormat>
+  <Paragraphs>{paragraphs}</Paragraphs>
+  <Slides>{len(slides)}</Slides>
+  <Notes>{len(slides)}</Notes>
+  <HiddenSlides>0</HiddenSlides>
+  <MMClips>0</MMClips>
+  <ScaleCrop>false</ScaleCrop>
+  <HeadingPairs>
+    <vt:vector size="4" baseType="variant">
+      <vt:variant><vt:lpstr>Theme</vt:lpstr></vt:variant>
+      <vt:variant><vt:i4>1</vt:i4></vt:variant>
+      <vt:variant><vt:lpstr>Slide Titles</vt:lpstr></vt:variant>
+      <vt:variant><vt:i4>{len(slides)}</vt:i4></vt:variant>
+    </vt:vector>
+  </HeadingPairs>
+  <TitlesOfParts>
+    <vt:vector size="{len(titles)}" baseType="lpstr">
+{title_parts}
+    </vt:vector>
+  </TitlesOfParts>
+  <Company/>
+  <LinksUpToDate>false</LinksUpToDate>
+  <SharedDoc>false</SharedDoc>
+  <HyperlinksChanged>false</HyperlinksChanged>
+  <AppVersion>16.0000</AppVersion>
+</Properties>"""
+    return xml.encode("utf-8")
+
+
+def normalize_powerpoint_package(path: Path, slides: list[SlideSpec]) -> None:
+    replacements = {
+        "docProps/app.xml": build_app_properties(slides),
+    }
+    skip_files = {"ppt/printerSettings/printerSettings1.bin"}
+
+    with zipfile.ZipFile(path) as original:
+        original_items = [(item, original.read(item.filename)) for item in original.infolist()]
+
+    with NamedTemporaryFile(delete=False, suffix=".pptx", dir=path.parent) as temp_file:
+        temp_path = Path(temp_file.name)
+
+    try:
+        with zipfile.ZipFile(temp_path, "w", compression=zipfile.ZIP_DEFLATED) as cleaned:
+            for item, data in original_items:
+                if item.filename in skip_files:
+                    continue
+
+                if item.filename == "ppt/presentation.xml":
+                    text = data.decode("utf-8")
+                    text = re.sub(r'(<p:sldSz\b[^>]*?)\s+type="[^"]+"', r'\1 type="screen16x9"', text, count=1)
+                    data = text.encode("utf-8")
+                elif item.filename == "[Content_Types].xml":
+                    text = data.decode("utf-8")
+                    text = re.sub(
+                        r'<Default\s+Extension="bin"\s+ContentType="application/vnd\.openxmlformats-officedocument\.presentationml\.printerSettings"\s*/>',
+                        "",
+                        text,
+                    )
+                    text = re.sub(
+                        r'<Override\s+PartName="/ppt/printerSettings/printerSettings1\.bin"\s+ContentType="application/vnd\.openxmlformats-officedocument\.presentationml\.printerSettings"\s*/>',
+                        "",
+                        text,
+                    )
+                    data = text.encode("utf-8")
+                elif item.filename == "ppt/_rels/presentation.xml.rels":
+                    text = data.decode("utf-8")
+                    text = re.sub(r'<Relationship\b[^>]*relationships/printerSettings"[^>]*/>', "", text)
+                    data = text.encode("utf-8")
+
+                if item.filename in replacements:
+                    data = replacements[item.filename]
+
+                cleaned.writestr(item, data)
+
+        temp_path.replace(path)
+    except Exception:
+        temp_path.unlink(missing_ok=True)
+        raise
 
 
 def normalize(value: str) -> str:
@@ -544,6 +639,40 @@ def validate_deck(path: Path, slides: list[SlideSpec]) -> None:
             raise ValueError(f"{path.name} slide {index} is missing expected speaker notes")
 
     with zipfile.ZipFile(path) as package:
+        presentation_xml = package.read("ppt/presentation.xml").decode("utf-8")
+        if 'type="screen4x3"' in presentation_xml:
+            raise ValueError(f"{path.name} still declares a 4:3 slide size")
+        if 'type="screen16x9"' not in presentation_xml:
+            raise ValueError(f"{path.name} does not declare a 16:9 slide size")
+
+        app_xml = package.read("docProps/app.xml").decode("utf-8")
+        if f"<Slides>{len(slides)}</Slides>" not in app_xml or f"<Notes>{len(slides)}</Notes>" not in app_xml:
+            raise ValueError(f"{path.name} has stale app.xml slide or notes counts")
+        if "Microsoft Macintosh PowerPoint" in app_xml:
+            raise ValueError(f"{path.name} still has stale Mac PowerPoint app metadata")
+
+        printer_settings = [name for name in package.namelist() if "printerSettings" in name]
+        if printer_settings:
+            raise ValueError(f"{path.name} still contains printer settings parts: {printer_settings}")
+
+        content_types = package.read("[Content_Types].xml").decode("utf-8")
+        if "printerSettings" in content_types:
+            raise ValueError(f"{path.name} still declares printer settings content types")
+
+        rels = package.read("ppt/_rels/presentation.xml.rels").decode("utf-8")
+        if "printerSettings" in rels:
+            raise ValueError(f"{path.name} still declares printer settings relationships")
+
+        negative_extents = []
+        for name in package.namelist():
+            if not (name.startswith("ppt/slides/slide") and name.endswith(".xml")):
+                continue
+            slide_xml = package.read(name).decode("utf-8")
+            if re.search(r'\b(?:cx|cy)="-', slide_xml):
+                negative_extents.append(name)
+        if negative_extents:
+            raise ValueError(f"{path.name} has negative shape extents in: {negative_extents}")
+
         note_slide_parts = [
             name
             for name in package.namelist()
