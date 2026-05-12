@@ -19,16 +19,18 @@ Then open `http://localhost:8080` in a browser.
 
 ## Copilot primitives
 
-This repo now includes a minimal set of Copilot customization assets for cost-aware workshop work:
+This repo now includes a minimal set of Copilot customization assets for building workshop-ready token optimization content:
 
 - `.github/copilot-instructions.md` for concise repository guidance
-- `.github/agents/token-cost-optimizer.agent.md` for GPT-5.5 cost and token optimization work
+- `.github/agents/workshop-content-builder.agent.md` for GPT-5.5 content creation across labs, decks, and teaching materials
 - `.github/agents/cost-rubber-duck.agent.md` for Claude Opus 4.7 second-opinion reviews
-- `.github/prompts/cost-review.prompt.md` for repeatable cost reviews
-- `.vscode/mcp.json` for Microsoft Learn and PPTX ingestion via MarkItDown MCP
+- `.github/prompts/build-workshop-content.prompt.md` for repeatable workshop-content generation
+- `.vscode/mcp.json` for Microsoft Learn and source-file ingestion via MarkItDown MCP
 
 ### Tool setup notes
 
+- The explicit file-ingestion tool is `markitdown` in `.vscode/mcp.json`.
+- Use MarkItDown to open and convert both `.pptx` and `.csv` files into markdown before reusing them in labs, prompts, or presentations.
 - Install MarkItDown MCP with PPTX support before using the PowerPoint reader flow:
 
   ```bash
@@ -36,6 +38,7 @@ This repo now includes a minimal set of Copilot customization assets for cost-aw
   ```
 
 - Use Microsoft Learn MCP for current Microsoft guidance.
+- CSV support is included in MarkItDown's core text-based format handling.
 - Use the agent's web tools for current GitHub documentation when the answer depends on latest behavior.
 
 ## Workshop goals
