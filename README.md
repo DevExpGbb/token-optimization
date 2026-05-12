@@ -47,6 +47,7 @@ The repo uses small project skills for workflows that should only load when rele
 - After the MCP server is installed and your Copilot client loads workspace MCP servers, pass in a `.pptx` or `.csv` file by attaching the file or by asking the agent to read that file path with the `markitdown` tool.
 - Use Microsoft Learn MCP for current Microsoft guidance.
 - CSV support is included in MarkItDown's core text-based format handling.
+- Treat PPTX conversion as full textual extraction for slides, tables, and reusable deck content, not full-fidelity inspection of animations, embedded media, or every binary object.
 - Use the agent's web tools for current GitHub documentation when the answer depends on latest behavior.
 
 ## Workshop goals
