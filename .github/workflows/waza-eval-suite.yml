@@ -1,0 +1,66 @@
+name: Waza Evals
+
+on:
+  pull_request:
+    paths:
+      - ".github/agents/**"
+      - ".github/instructions/**"
+      - ".github/prompts/**"
+      - ".github/skills/**"
+      - "evals/**"
+      - "skills/**"
+      - "labs/08-ai-evals-and-observability.md"
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/agents/**"
+      - ".github/instructions/**"
+      - ".github/prompts/**"
+      - ".github/skills/**"
+      - "evals/**"
+      - "skills/**"
+      - "labs/08-ai-evals-and-observability.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    name: Run Waza eval suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Waza
+        env:
+          # Pinned to a Microsoft Waza repository snapshot selected from upstream docs on 2026-05-12.
+          # If this commit becomes unavailable, update to a reviewed upstream commit and SHA-256 together.
+          # SHA-256 verified for this exact install.sh content on 2026-05-12.
+          WAZA_INSTALL_COMMIT: bf77c759d6bee3ba578c1980fa8a176fe8d014e4
+          WAZA_INSTALL_SHA256: f9f949c8ef7ed4e3309cee3f1285d2f7a7dea6db1c965ceab09443d3c7910d7a
+        run: |
+          curl -fsSL \
+            "https://raw.githubusercontent.com/microsoft/waza/${WAZA_INSTALL_COMMIT}/install.sh" \
+            -o install-waza.sh
+          echo "${WAZA_INSTALL_SHA256}  install-waza.sh" | sha256sum -c -
+          bash install-waza.sh
+
+      - name: Verify Waza
+        run: waza --version
+
+      - name: Run Waza
+        run: |
+          mkdir -p waza-results
+          waza run evals/token-optimization/eval.yaml \
+            --verbose \
+            --output waza-results/results.json \
+            --reporter junit:waza-results/results.xml
+
+      - name: Upload Waza results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waza-results
+          path: waza-results/

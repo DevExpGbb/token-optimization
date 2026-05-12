@@ -1,0 +1,17 @@
+id: context-triage
+name: Context triage recommendation
+description: The assistant should identify unnecessary context and recommend a measurable prompt or instruction improvement.
+tags:
+  - context
+  - token-efficiency
+inputs:
+  prompt: |
+    Review a coding assistant prompt that includes the whole repository for a one-line documentation fix.
+    Recommend how to reduce context while preserving answer quality.
+expected:
+  output_contains:
+    - "context"
+    - "prompt"
+    - "quality"
+  behavior:
+    max_tool_calls: 5
