@@ -13,6 +13,8 @@ Use Waza for this chapter's lab and examples:
 - Typical commands: `waza run`, `waza check`, `waza compare`, `waza coverage`, and `waza tokens`.
 - CI integration: run Waza in GitHub Actions and publish the result files as workflow artifacts.
 
+Before delivery, confirm attendees can access the Waza documentation and repository from their network.
+
 This repository includes the minimum workspace artifacts Waza and VS Code customizations need:
 
 - `skills/token-optimization/SKILL.md` for the Waza skill under evaluation.
