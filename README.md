@@ -17,6 +17,27 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080` in a browser.
 
+## Copilot primitives
+
+This repo now includes a minimal set of Copilot customization assets for cost-aware workshop work:
+
+- `.github/copilot-instructions.md` for concise repository guidance
+- `.github/agents/token-cost-optimizer.agent.md` for GPT-5.5 cost and token optimization work
+- `.github/agents/cost-rubber-duck.agent.md` for Claude Opus 4.7 second-opinion reviews
+- `.github/prompts/cost-review.prompt.md` for repeatable cost reviews
+- `.vscode/mcp.json` for Microsoft Learn and PPTX ingestion via MarkItDown MCP
+
+### Tool setup notes
+
+- Install MarkItDown MCP with PPTX support before using the PowerPoint reader flow:
+
+  ```bash
+  pip install "markitdown[pptx]" markitdown-mcp
+  ```
+
+- Use Microsoft Learn MCP for current Microsoft guidance.
+- Use the agent's web tools for current GitHub documentation when the answer depends on latest behavior.
+
 ## Workshop goals
 
 - Help customers reduce avoidable AI usage and improve answer quality.
