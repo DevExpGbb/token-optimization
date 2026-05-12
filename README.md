@@ -5,6 +5,18 @@ This repository contains source material for a practical developer workshop on c
 
 Start with [`labs/README.md`](labs/README.md) for 1-hour, 2-hour, and 4-hour delivery outlines, then use the chapter files in order or as modular source material.
 
+## Sample web app
+
+This repository also includes a static JavaScript sample app for GitHub Copilot Usage-Based Budgeting.
+
+To run it locally:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080` in a browser.
+
 ## Workshop goals
 
 - Help customers reduce avoidable AI usage and improve answer quality.
