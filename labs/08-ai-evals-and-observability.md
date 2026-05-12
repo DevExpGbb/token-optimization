@@ -23,7 +23,7 @@ This repository includes the minimum workspace artifacts Waza and VS Code custom
 - `.github/instructions/token-optimization.instructions.md` as shared instructions.
 - `.github/agents/token-eval-reviewer.agent.md` as a VS Code custom agent.
 - `evals/token-optimization/eval.yaml` and task files for Waza.
-- `.github/workflows/waza-evals.yml` to run the eval suite in Actions.
+- `.github/workflows/waza-eval-suite.yml` to run the eval suite in Actions.
 
 ## What to evaluate
 
@@ -58,7 +58,7 @@ Start with 10-20 examples:
 
 ## Hands-on lab
 
-1. Open the repository's Waza workflow in `.github/workflows/waza-evals.yml`.
+1. Open the repository's Waza workflow in `.github/workflows/waza-eval-suite.yml`.
 2. Review the skill, prompt, instruction, and agent customization files.
 3. Run the Waza workflow from the Actions tab or by opening a pull request.
 4. Download the Waza result artifacts and identify which task failed or passed.
