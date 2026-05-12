@@ -4,16 +4,19 @@
 
 Model choice is a cost-quality-latency decision. Use the smallest model that reliably handles the task, and escalate only when the task requires deeper reasoning, larger context, or higher reliability.
 
+Surface choice is part of model choice. Sometimes the best optimization is moving the task to VS Code Plan, Copilot CLI, GitHub.com, coding/cloud agent, or code review rather than only switching models.
+
 ## Suggested routing
 
-| Task | Recommended model style |
+| Task | Recommended model or surface style |
 | --- | --- |
-| Simple rewrite, formatting, naming | Fast/low-cost model |
-| Code search explanation | Fast or standard model |
-| Localized bug fix | Standard coding model |
-| Cross-file architecture change | Stronger reasoning model |
-| Security-sensitive review | Stronger reasoning model plus human review |
-| Long-context synthesis | Long-context model, but only after trimming inputs |
+| Simple rewrite, formatting, naming | Fast/low-cost model in IDE or chat |
+| Code search explanation | Ask mode, web chat, or fast/standard model |
+| Localized bug fix | Standard coding model in IDE or CLI |
+| Cross-file architecture change | Plan first, then stronger reasoning model or coding agent |
+| Pull request feedback | Copilot code review plus human review |
+| Security-sensitive review | Stronger reasoning model, review workflow, and human approval |
+| Long-context synthesis | Long-context model only after trimming and summarizing inputs |
 
 ## Escalation triggers
 
@@ -39,3 +42,5 @@ Model choice is a cost-quality-latency decision. Use the smallest model that rel
 ## Facilitator note
 
 The goal is not always the cheapest single request. The goal is the lowest total cost for a correct and useful outcome.
+
+Code review is purpose-built and does not support user model switching. Teach it as a separate review surface, not just another chat prompt.

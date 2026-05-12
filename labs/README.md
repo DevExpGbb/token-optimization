@@ -1,6 +1,6 @@
-# Context Management and Token Optimization Workshop
+# Token Optimization and Context Engineering Workshop
 
-Customer-facing source material for a practical developer training session. The workshop can be delivered as a 1-hour demo, 2-hour workshop, or 4-hour hands-on lab.
+Customer-facing source material for a practical developer training session. The workshop can be delivered as a 1-hour awareness session, 2-hour practitioner workshop, or 4-hour applied environment review.
 
 ## Audience
 
@@ -13,6 +13,7 @@ Attendees will learn how to:
 - Reduce unnecessary context and token usage without reducing quality.
 - Choose the right model, tool, and session strategy for a task.
 - Manage instructions, customizations, memory, and chat history deliberately.
+- Apply context engineering across Copilot CLI, VS Code, GitHub.com, coding/cloud agent, and code review workflows.
 - Evaluate whether workflow changes improve quality, speed, and cost.
 - Locate monthly usage and billing signals across common AI clients.
 - Apply these practices to future work projects.
@@ -26,51 +27,58 @@ Attendees will learn how to:
 
 ## Delivery formats
 
-### 1-hour version: executive demo + guided practice
+### 1-hour version: awareness + demo
 
 | Time | Topic |
 | --- | --- |
-| 0:00-0:05 | Why token optimization matters after billing/usage model changes |
-| 0:05-0:15 | Context basics and common waste patterns |
-| 0:15-0:25 | Instructions, customizations, and tool/MCP hygiene |
-| 0:25-0:35 | Chat session management and model choice |
-| 0:35-0:45 | Usage visibility and monthly reporting |
-| 0:45-0:55 | Mini eval demo |
-| 0:55-1:00 | Next steps and team commitments |
+| 0:00-0:05 | Why token optimization and context engineering matter |
+| 0:05-0:15 | Mental model: context inputs, token waste, and quality waste |
+| 0:15-0:25 | Five levers across Copilot surfaces |
+| 0:25-0:40 | Demo: instruction diet or prompt/context refactor |
+| 0:40-0:50 | Measurement and governance overview |
+| 0:50-1:00 | Monday-morning checklist and team commitments |
 
-Recommended chapters: 01, 02, 03, 05, 07, 08, 10.
+Recommended chapters: 00, 01, 02, 05, 07, 10, 11.
 
-### 2-hour version: demo + hands-on workshop
-
-| Time | Topic |
-| --- | --- |
-| 0:00-0:10 | Goals, billing context, and customer trust |
-| 0:10-0:25 | Context management fundamentals |
-| 0:25-0:45 | Lab: trim context and improve a prompt |
-| 0:45-1:05 | Instructions, customizations, MCP, and tools |
-| 1:05-1:25 | Lab: design a lean agent/tool setup |
-| 1:25-1:40 | Model choice, memory, and chat session strategy |
-| 1:40-1:55 | Usage visibility and evals |
-| 1:55-2:00 | Next steps |
-
-Recommended chapters: 01 through 08 and 10.
-
-### 4-hour version: full lab
+### 2-hour version: practitioner workshop
 
 | Time | Topic |
 | --- | --- |
-| 0:00-0:15 | Workshop framing and repository walkthrough |
-| 0:15-0:45 | Context management fundamentals |
-| 0:45-1:15 | Lab: context audit and prompt refactor |
-| 1:15-1:45 | Instructions and agent customization design |
-| 1:45-2:15 | MCP/tool optimization lab |
-| 2:15-2:45 | Chat sessions, memory, and history lab |
-| 2:45-3:10 | Model choice and cost-quality tradeoffs |
-| 3:10-3:35 | Monthly usage visibility across clients |
-| 3:35-3:55 | AI evals and observability |
-| 3:55-4:00 | Next steps and commitment plan |
+| 0:00-0:10 | Goals, surfaces, and customer trust |
+| 0:10-0:30 | Context engineering fundamentals |
+| 0:30-0:55 | Lab: context inventory and prompt refactor |
+| 0:55-1:15 | Instructions, prompts, skills, agents, and MCP hygiene |
+| 1:15-1:35 | Lab: instruction diet or lean workflow design |
+| 1:35-1:50 | Model/surface routing and code review hygiene |
+| 1:50-2:00 | Measurement, next steps, and commitments |
 
-Recommended chapters: all chapters.
+Recommended chapters: 00 through 08, 10, and 11. Code review can be a short demo or stretch exercise.
+
+### 4-hour version: applied customer environment review
+
+| Time | Topic |
+| --- | --- |
+| 0:00-0:15 | Preflight, safety rules, and workshop framing |
+| 0:15-0:45 | Token optimization and context engineering fundamentals |
+| 0:45-1:20 | Lab: context inventory on sample or customer repo |
+| 1:20-1:55 | Lab: instruction diet and reusable primitives |
+| 1:55-2:25 | Surface routing: CLI, VS Code, GitHub.com, coding agent, and code review |
+| 2:25-3:00 | Customer self-review: tools, MCP, code review, model policies |
+| 3:00-3:30 | Measurement and governance review |
+| 3:30-3:50 | Anonymized findings and team operating model |
+| 3:50-4:00 | Commitments and 30-day adoption plan |
+
+Recommended chapters: all chapters. Use the customer preflight checklist and fallback repository.
+
+## Student materials
+
+- [`../decks/token-optimization-context-engineering.pptx`](../decks/token-optimization-context-engineering.pptx) - starter delivery deck
+- [`../decks/token-optimization-context-engineering.outline.md`](../decks/token-optimization-context-engineering.outline.md) - editable deck source
+- [`../resources/copilot-surface-matrix.md`](../resources/copilot-surface-matrix.md) - living surface reference
+- [`../resources/context-inventory-worksheet.md`](../resources/context-inventory-worksheet.md)
+- [`../resources/instruction-diet-worksheet.md`](../resources/instruction-diet-worksheet.md)
+- [`../resources/customer-preflight-checklist.md`](../resources/customer-preflight-checklist.md)
+- [`../resources/monday-morning-checklist.md`](../resources/monday-morning-checklist.md)
 
 ## Suggested facilitation style
 

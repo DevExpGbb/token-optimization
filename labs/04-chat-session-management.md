@@ -4,6 +4,8 @@
 
 A chat session is a working context, not a permanent project record. Start new sessions when the task changes, summarize before switching, and avoid carrying stale history.
 
+Different Copilot surfaces expose different session controls, but the habit transfers: isolate planning, implementation, testing, and review when mixing them would pollute context.
+
 ## When to continue a session
 
 - You are iterating on the same bug, file, or design.
@@ -29,6 +31,16 @@ Decisions already made:
 Constraints:
 What I need next:
 ```
+
+## Surface variants
+
+| Surface | Session habit |
+| --- | --- |
+| Copilot CLI | Use a focused session per task; summarize before switching focus |
+| VS Code | Use Ask, Plan, and Agent intentionally; start fresh when moving from planning to implementation if context is messy |
+| GitHub.com | Use repository, issue, or PR context; keep threads and subthreads focused |
+| Coding/cloud agent | Put durable task context in the issue or implementation brief |
+| Code review | Keep pull requests small and reviewable; avoid mixing unrelated changes |
 
 ## Demo
 

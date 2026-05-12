@@ -1,9 +1,9 @@
 # token-optimization
 A customer-facing engagement for context management and token optimization
 
-This repository contains source material for a practical developer workshop on context management, token optimization, agent customization, tool/MCP hygiene, model choice, AI evals, usage visibility, and sustainable team practices.
+This repository contains source material for a practical developer workshop on token optimization, context engineering, agent customization, tool/MCP hygiene, model choice, AI evals, usage visibility, and sustainable team practices.
 
-Start with [`labs/README.md`](labs/README.md) for 1-hour, 2-hour, and 4-hour delivery outlines, then use the chapter files in order or as modular source material.
+Start with [`labs/README.md`](labs/README.md) for 1-hour, 2-hour, and 4-hour delivery outlines, then use the chapter files, deck outline, surface matrix, and worksheets as modular source material.
 
 ## Sample web app
 
@@ -59,7 +59,17 @@ The repo uses small project skills for workflows that should only load when rele
 
 ## Contents
 
-- [`labs/README.md`](labs/README.md) — overview, prerequisites, and timed agendas
+- [`labs/README.md`](labs/README.md) - overview, prerequisites, and timed agendas
+- [`decks/token-optimization-context-engineering.pptx`](decks/token-optimization-context-engineering.pptx) - starter delivery deck
+- [`decks/token-optimization-context-engineering.outline.md`](decks/token-optimization-context-engineering.outline.md) - editable delivery deck outline
+- [`decks/token-optimization-context-engineering.speaker-notes.md`](decks/token-optimization-context-engineering.speaker-notes.md) - speaker notes for the delivery deck
+- [`resources/copilot-surface-matrix.md`](resources/copilot-surface-matrix.md) - living reference for Copilot surfaces and context controls
+- [`resources/context-inventory-worksheet.md`](resources/context-inventory-worksheet.md)
+- [`resources/instruction-diet-worksheet.md`](resources/instruction-diet-worksheet.md)
+- [`resources/customer-preflight-checklist.md`](resources/customer-preflight-checklist.md)
+- [`resources/monday-morning-checklist.md`](resources/monday-morning-checklist.md)
+- [`facilitator/delivery-guide.md`](facilitator/delivery-guide.md)
+- [`labs/00-token-optimization-and-context-engineering.md`](labs/00-token-optimization-and-context-engineering.md)
 - [`labs/01-context-management-basics.md`](labs/01-context-management-basics.md)
 - [`labs/02-instructions-and-agent-customizations.md`](labs/02-instructions-and-agent-customizations.md)
 - [`labs/03-mcp-and-tool-optimization.md`](labs/03-mcp-and-tool-optimization.md)
@@ -70,3 +80,5 @@ The repo uses small project skills for workflows that should only load when rele
 - [`labs/08-ai-evals-and-observability.md`](labs/08-ai-evals-and-observability.md)
 - [`labs/09-ideal-workshop-repo.md`](labs/09-ideal-workshop-repo.md)
 - [`labs/10-next-steps-and-extra-topics.md`](labs/10-next-steps-and-extra-topics.md)
+- [`labs/11-copilot-surfaces-and-context-boundaries.md`](labs/11-copilot-surfaces-and-context-boundaries.md)
+- [`labs/12-customer-environment-review.md`](labs/12-customer-environment-review.md)

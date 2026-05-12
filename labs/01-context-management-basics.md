@@ -4,6 +4,8 @@
 
 Every AI request has a context budget. More context can help, but irrelevant context increases cost, latency, and confusion. Good context management is the discipline of giving the model enough information to succeed and no more.
 
+Context engineering adds a design lens: decide which information belongs in always-on guidance, which belongs in the current prompt, which should be retrieved on demand, and which should stay out of the session.
+
 ## Common waste patterns
 
 - Pasting entire files when only one function matters.
@@ -21,6 +23,11 @@ Before sending a request, ask:
 3. What constraints should the model follow?
 4. What can be omitted because it is stale, unrelated, or discoverable?
 5. Should this be a new chat/session?
+6. Is this the right Copilot surface for the task?
+
+## Billing and quality caveat
+
+"The full context is resent" is a useful way to understand why context bloat matters, but actual accounting can vary by product, model, cache behavior, and surface. Teach the habit, not a fixed invoice formula: keep stable context stable, avoid irrelevant context, and measure with the tools available for the surface.
 
 ## Demo
 
@@ -44,3 +51,4 @@ Refactor it:
 
 - Emphasize that "less context" does not mean "less information." It means higher signal.
 - Encourage attendees to separate discovery, implementation, and review into different turns.
+- Tie every example to both scoreboards: cost and answer quality.
