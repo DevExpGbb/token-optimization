@@ -55,6 +55,45 @@ const budgetPages = [
   }
 ];
 
+const surfaceProfiles = {
+  ide: {
+    label: "VS Code/IDE",
+    sessions: 20,
+    turns: 6,
+    inputTokens: 4500,
+    outputTokens: 900,
+    premiumRatio: 0.35,
+    guidance: "Watch attachment scope, mode choice, retries, and broad #codebase use."
+  },
+  cli: {
+    label: "GitHub Copilot CLI",
+    sessions: 16,
+    turns: 8,
+    inputTokens: 6500,
+    outputTokens: 1000,
+    premiumRatio: 0.45,
+    guidance: "Watch long sessions, raw command output, delegated agents, and repeated searches."
+  },
+  github: {
+    label: "GitHub.com/coding agent",
+    sessions: 12,
+    turns: 5,
+    inputTokens: 8000,
+    outputTokens: 1400,
+    premiumRatio: 0.6,
+    guidance: "Watch vague issues, generated PR size, Spaces queries, and review cycles."
+  },
+  review: {
+    label: "Copilot code review",
+    sessions: 18,
+    turns: 3,
+    inputTokens: 7000,
+    outputTokens: 800,
+    premiumRatio: 0.5,
+    guidance: "Watch PR size, automatic review policy, repeated comments, and false positives."
+  }
+};
+
 function enterpriseDiagram() {
   return `
     <svg viewBox="0 0 720 320" role="img" aria-labelledby="enterprise-diagram-title">
@@ -157,6 +196,7 @@ function renderHome() {
         </p>
         <div class="button-row">
           <a class="Button Button--primary" href="#enterprise">Explore budget types</a>
+          <a class="Button" href="#calculator">Estimate by surface</a>
           <a class="Button" href="#request">Request user budget</a>
         </div>
         <div class="facts" aria-label="Key billing facts">
@@ -164,6 +204,43 @@ function renderHome() {
           <div class="fact"><strong>1,900</strong><span>Monthly included AI credits per Copilot Business user.</span></div>
           <div class="fact"><strong>3,900</strong><span>Monthly included AI credits per Copilot Enterprise user.</span></div>
           <div class="fact"><strong>75/90/100%</strong><span>Budget alert thresholds available in GitHub billing.</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2>Workshop tracks</h2>
+        <p class="lead">
+          Use the same token optimization principles through the surface your team uses most often.
+        </p>
+        <div class="grid grid-3">
+          <a class="Box card-link" href="./labs/01-ide-context-and-prompt-flow.md">
+            <div class="Box-header">
+              <span class="label label--accent">IDE</span>
+              <h3 class="Box-title">VS Code/IDE users</h3>
+            </div>
+            <div class="Box-body">
+              <p>Modes, attachments, instructions, prompt files, chat modes, and workspace MCP.</p>
+            </div>
+          </a>
+          <a class="Box card-link" href="./labs/03-cli-context-and-tool-output.md">
+            <div class="Box-header">
+              <span class="label label--success">CLI</span>
+              <h3 class="Box-title">GHCP CLI users</h3>
+            </div>
+            <div class="Box-body">
+              <p>Focused sessions, filtered tool output, agents, MCP boundaries, and handoffs.</p>
+            </div>
+          </a>
+          <a class="Box card-link" href="./labs/05-github-web-context-and-coding-agent.md">
+            <div class="Box-header">
+              <span class="label label--attention">GitHub.com</span>
+              <h3 class="Box-title">Web and code review users</h3>
+            </div>
+            <div class="Box-body">
+              <p>Issue context, Spaces, coding agent scope, PR hygiene, and review signal.</p>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -189,6 +266,73 @@ function renderHome() {
               `
             )
             .join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderCalculator() {
+  const options = Object.entries(surfaceProfiles)
+    .map(([id, profile]) => `<option value="${id}">${profile.label}</option>`)
+    .join("");
+
+  return `
+    <section class="section budget-page" id="calculator">
+      <div class="container">
+        <span class="label label--accent">Estimator</span>
+        <h2>Estimate a Copilot workflow by surface</h2>
+        <p class="lead">
+          This static calculator uses your assumptions and rates. It does not call GitHub APIs and does not hardcode future per-token pricing.
+        </p>
+        <div class="Box calculator-card">
+          <div class="Box-body">
+            <form id="surface-calculator-form" class="calculator-grid">
+              <div class="form-group">
+                <label class="form-label" for="surface">Surface</label>
+                <select class="form-control" id="surface" name="surface">${options}</select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sessions">Monthly sessions or tasks</label>
+                <input class="form-control" id="sessions" name="sessions" type="number" min="0" step="1" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="turns">Turns or model calls per session</label>
+                <input class="form-control" id="turns" name="turns" type="number" min="0" step="1" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="inputTokens">Average input tokens per turn</label>
+                <input class="form-control" id="inputTokens" name="inputTokens" type="number" min="0" step="100" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="outputTokens">Average output tokens per turn</label>
+                <input class="form-control" id="outputTokens" name="outputTokens" type="number" min="0" step="100" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="premiumRatio">Premium request share</label>
+                <input class="form-control" id="premiumRatio" name="premiumRatio" type="number" min="0" max="1" step="0.05" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="inputRate">Input rate ($ per 1M tokens)</label>
+                <input class="form-control" id="inputRate" name="inputRate" type="number" min="0" step="0.01" placeholder="Paste current rate" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="outputRate">Output rate ($ per 1M tokens)</label>
+                <input class="form-control" id="outputRate" name="outputRate" type="number" min="0" step="0.01" placeholder="Paste current rate" />
+              </div>
+              <div class="form-group calculator-source">
+                <label class="form-label" for="rateSource">Rate source URL</label>
+                <input class="form-control" id="rateSource" name="rateSource" type="url" placeholder="https://github.com/features/copilot/plans" />
+              </div>
+            </form>
+            <div class="calculator-output" id="calculator-output" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="source-list">
+          Verify rates before presenting customer estimates:
+          <a href="https://github.com/features/copilot/plans">GitHub Copilot plans</a>
+          and
+          <a href="https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/about-billing-for-github-copilot">GitHub Copilot billing docs</a>.
         </div>
       </div>
     </section>
@@ -270,14 +414,76 @@ function attachFormHandler() {
   });
 }
 
+function numberValue(form, name) {
+  const value = Number.parseFloat(form.elements[name].value);
+  return Number.isFinite(value) ? value : 0;
+}
+
+function formatNumber(value) {
+  return Math.round(value).toLocaleString();
+}
+
+function formatCurrency(value) {
+  return value.toLocaleString(undefined, { style: "currency", currency: "USD" });
+}
+
+function updateCalculatorFromSurface() {
+  const form = document.querySelector("#surface-calculator-form");
+  const profile = surfaceProfiles[form.elements.surface.value];
+  form.elements.sessions.value = profile.sessions;
+  form.elements.turns.value = profile.turns;
+  form.elements.inputTokens.value = profile.inputTokens;
+  form.elements.outputTokens.value = profile.outputTokens;
+  form.elements.premiumRatio.value = profile.premiumRatio;
+  updateCalculator();
+}
+
+function updateCalculator() {
+  const form = document.querySelector("#surface-calculator-form");
+  const output = document.querySelector("#calculator-output");
+  const profile = surfaceProfiles[form.elements.surface.value];
+  const sessions = numberValue(form, "sessions");
+  const turns = numberValue(form, "turns");
+  const inputTokens = numberValue(form, "inputTokens");
+  const outputTokens = numberValue(form, "outputTokens");
+  const premiumRatio = numberValue(form, "premiumRatio");
+  const inputRate = numberValue(form, "inputRate");
+  const outputRate = numberValue(form, "outputRate");
+  const totalTurns = sessions * turns;
+  const monthlyInput = totalTurns * inputTokens;
+  const monthlyOutput = totalTurns * outputTokens;
+  const premiumRequests = totalTurns * premiumRatio;
+  const estimatedCost = (monthlyInput / 1_000_000) * inputRate + (monthlyOutput / 1_000_000) * outputRate;
+  const hasRates = inputRate > 0 || outputRate > 0;
+
+  output.innerHTML = `
+    <div class="result-grid">
+      <div class="result"><strong>${formatNumber(monthlyInput)}</strong><span>estimated monthly input tokens</span></div>
+      <div class="result"><strong>${formatNumber(monthlyOutput)}</strong><span>estimated monthly output tokens</span></div>
+      <div class="result"><strong>${formatNumber(premiumRequests)}</strong><span>estimated premium requests</span></div>
+      <div class="result"><strong>${hasRates ? formatCurrency(estimatedCost) : "Add rates"}</strong><span>estimated token cost</span></div>
+    </div>
+    <div class="callout">${profile.guidance}</div>
+  `;
+}
+
+function attachCalculatorHandler() {
+  const form = document.querySelector("#surface-calculator-form");
+  form.addEventListener("input", updateCalculator);
+  form.elements.surface.addEventListener("change", updateCalculatorFromSurface);
+  updateCalculatorFromSurface();
+}
+
 function renderApp() {
   const app = document.querySelector("#app");
   app.innerHTML = [
     renderHome(),
     ...budgetPages.map(renderBudgetPage),
+    renderCalculator(),
     renderRequestForm()
   ].join("");
   attachFormHandler();
+  attachCalculatorHandler();
 }
 
 renderApp();
