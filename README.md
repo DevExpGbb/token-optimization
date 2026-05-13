@@ -3,11 +3,11 @@ A customer-facing engagement for context management and token optimization
 
 This repository contains source material for a practical developer workshop on token optimization, context engineering, agent customization, tool/MCP hygiene, model choice, AI evals, usage visibility, and sustainable team practices.
 
-Start with [`labs/README.md`](labs/README.md) for 1-hour, 2-hour, and 4-hour delivery outlines, then use the chapter files, deck outline, surface matrix, and worksheets as modular source material.
+Start with [`labs/README.md`](labs/README.md) for 1-hour, 2-hour, and 4-hour delivery outlines, then use the track labs, deck outline, surface matrix, templates, exercises, and worksheets as modular source material.
 
 ## Sample web app
 
-This repository also includes a static JavaScript sample app for GitHub Copilot Usage-Based Budgeting.
+This repository also includes a static JavaScript sample app for GitHub Copilot Usage-Based Budgeting. It includes budget-scope guidance and a per-surface estimator that uses user-supplied token rates instead of hardcoded future pricing.
 
 To run it locally:
 
@@ -57,6 +57,15 @@ The repo uses small project skills for workflows that should only load when rele
 - Give attendees repeatable habits they can apply in other projects.
 - Introduce eval-driven improvement so teams can measure whether changes help.
 
+## Curriculum tracks
+
+| Track | Labs |
+| --- | --- |
+| VS Code/IDE users | [`00`](labs/00-foundations.md), [`01`](labs/01-ide-context-and-prompt-flow.md), [`02`](labs/02-ide-instructions-tools-and-mcp.md), [`07`](labs/07-measurement-billing-and-governance.md), [`08`](labs/08-applied-repo-review-and-adoption.md) |
+| GitHub Copilot CLI users | [`00`](labs/00-foundations.md), [`03`](labs/03-cli-context-and-tool-output.md), [`04`](labs/04-cli-agents-tools-and-cost-control.md), [`07`](labs/07-measurement-billing-and-governance.md), [`08`](labs/08-applied-repo-review-and-adoption.md) |
+| GitHub.com/code review users | [`00`](labs/00-foundations.md), [`05`](labs/05-github-web-context-and-coding-agent.md), [`06`](labs/06-github-code-review-and-pr-hygiene.md), [`07`](labs/07-measurement-billing-and-governance.md), [`08`](labs/08-applied-repo-review-and-adoption.md) |
+| Full cross-surface practitioner | [`00`](labs/00-foundations.md) through [`08`](labs/08-applied-repo-review-and-adoption.md) |
+
 ## Contents
 
 - [`labs/README.md`](labs/README.md) - overview, prerequisites, and timed agendas
@@ -71,20 +80,19 @@ The repo uses small project skills for workflows that should only load when rele
 - [`resources/instruction-diet-worksheet.md`](resources/instruction-diet-worksheet.md)
 - [`resources/customer-preflight-checklist.md`](resources/customer-preflight-checklist.md)
 - [`resources/monday-morning-checklist.md`](resources/monday-morning-checklist.md)
+- [`templates/README.md`](templates/README.md) - copy/paste starter Copilot customization files
+- [`exercises/README.md`](exercises/README.md) - track-specific hands-on exercises
 - [`facilitator/delivery-guide.md`](facilitator/delivery-guide.md)
-- [`labs/00-token-optimization-and-context-engineering.md`](labs/00-token-optimization-and-context-engineering.md)
-- [`labs/01-context-management-basics.md`](labs/01-context-management-basics.md)
-- [`labs/02-instructions-and-agent-customizations.md`](labs/02-instructions-and-agent-customizations.md)
-- [`labs/03-mcp-and-tool-optimization.md`](labs/03-mcp-and-tool-optimization.md)
-- [`labs/04-chat-session-management.md`](labs/04-chat-session-management.md)
-- [`labs/05-model-choice.md`](labs/05-model-choice.md)
-- [`labs/06-chat-history-and-memory.md`](labs/06-chat-history-and-memory.md)
-- [`labs/07-usage-and-billing-visibility.md`](labs/07-usage-and-billing-visibility.md)
-- [`labs/08-ai-evals-and-observability.md`](labs/08-ai-evals-and-observability.md)
-- [`labs/09-ideal-workshop-repo.md`](labs/09-ideal-workshop-repo.md)
-- [`labs/10-next-steps-and-extra-topics.md`](labs/10-next-steps-and-extra-topics.md)
-- [`labs/11-copilot-surfaces-and-context-boundaries.md`](labs/11-copilot-surfaces-and-context-boundaries.md)
-- [`labs/12-customer-environment-review.md`](labs/12-customer-environment-review.md)
+- [`labs/00-foundations.md`](labs/00-foundations.md)
+- [`labs/01-ide-context-and-prompt-flow.md`](labs/01-ide-context-and-prompt-flow.md)
+- [`labs/02-ide-instructions-tools-and-mcp.md`](labs/02-ide-instructions-tools-and-mcp.md)
+- [`labs/03-cli-context-and-tool-output.md`](labs/03-cli-context-and-tool-output.md)
+- [`labs/04-cli-agents-tools-and-cost-control.md`](labs/04-cli-agents-tools-and-cost-control.md)
+- [`labs/05-github-web-context-and-coding-agent.md`](labs/05-github-web-context-and-coding-agent.md)
+- [`labs/06-github-code-review-and-pr-hygiene.md`](labs/06-github-code-review-and-pr-hygiene.md)
+- [`labs/07-measurement-billing-and-governance.md`](labs/07-measurement-billing-and-governance.md)
+- [`labs/08-applied-repo-review-and-adoption.md`](labs/08-applied-repo-review-and-adoption.md)
+- [`labs/MIGRATION.md`](labs/MIGRATION.md)
 
 ## Regenerating the deck
 

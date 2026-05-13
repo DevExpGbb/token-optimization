@@ -17,6 +17,8 @@ Use Copilot CLI as the reference implementation because it exposes context, tool
 | `decks/token-optimization-context-engineering.speaker-notes.md` | Presenter notes embedded into generated PPTX files |
 | `tools/generate_context_deck.py` | Regenerates all deck variants from the Markdown sources |
 | `labs/README.md` | Track selection and student entry point |
+| `templates/README.md` | Copy/paste starter Copilot customization files |
+| `exercises/README.md` | Track-specific hands-on exercises |
 | `resources/copilot-surface-matrix.md` | Living surface reference |
 | `resources/*-worksheet.md` | Hands-on and customer review worksheets |
 
@@ -33,10 +35,10 @@ Use Copilot CLI as the reference implementation because it exposes context, tool
 
 Best for leaders, technical leads, and mixed audiences.
 
-1. Explain the mental model.
-2. Show the simplified surface matrix.
-3. Run an instruction diet demo.
-4. End with the Monday-morning checklist.
+1. Run lab `00` for the shared mental model.
+2. Pick one track demo: VS Code/IDE, GHCP CLI, or GitHub.com/code review.
+3. Show the surface estimator in the sample app.
+4. End with lab `08` and the Monday-morning checklist.
 
 Avoid deep product configuration. Keep the call to action practical.
 
@@ -44,22 +46,22 @@ Avoid deep product configuration. Keep the call to action practical.
 
 Best for developers and enablement teams.
 
-1. Teach the mental model and five levers.
-2. Run the context inventory exercise.
-3. Run a VS Code, web, or CLI prompt/context refactor.
-4. Demo code review context hygiene if time allows.
-5. Capture team commitments.
+1. Teach lab `00`.
+2. Run one complete track bundle: `01-02`, `03-04`, or `05-06`.
+3. Run the matching exercise from `exercises/`.
+4. Use lab `07` to connect cost and quality signals.
+5. Capture commitments with lab `08`.
 
 ### 4 hours: applied environment review
 
 Best for teams that can inspect their own repositories.
 
 1. Confirm preflight and safety rules.
-2. Teach the core mental model.
-3. Complete context inventory and instruction diet worksheets.
-4. Review code review, model, tool, and measurement settings.
+2. Teach lab `00`.
+3. Rotate through labs `01` through `06` or split learners by track.
+4. Review billing, governance, and measurement with lab `07`.
 5. Share anonymized findings.
-6. Build a 30-day operating model.
+6. Build a 30-day operating model with lab `08`.
 
 Use a fallback public repository if the customer environment is not ready.
 
