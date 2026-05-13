@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "markitdown": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "markitdown_mcp"]
+    }
+  }
+}
