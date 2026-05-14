@@ -14,7 +14,8 @@ Use a sandbox repository or customer-approved demo repository. TODO(cody): confi
 2. Add the desired behavior.
 3. Add non-goals and files to avoid.
 4. Add acceptance criteria.
-5. Add validation commands and review expectations.
+5. Add setup assumptions or setup steps.
+6. Add validation commands and review expectations.
 
 ## Output
 

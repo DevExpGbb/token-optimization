@@ -13,8 +13,10 @@ You need to update a feature but do not know the exact files. The repo has tests
 1. Define the task in one sentence.
 2. List tools that are needed and tools that are not needed.
 3. Delegate read-only discovery with explicit files or folders to avoid.
-4. Ask for a concise summary instead of raw search output.
-5. Decide whether implementation should be direct or delegated.
+4. Edit the plan before execution if the scope is unclear.
+5. Ask for a concise summary instead of raw search output.
+6. Decide whether implementation should be direct or delegated.
+7. Name one repeated-loop signal that would make you stop the agent.
 
 ## Output
 

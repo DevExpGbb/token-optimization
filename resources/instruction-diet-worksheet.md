@@ -28,12 +28,24 @@ Primary surfaces affected:
 | Specialist role with tools and boundaries | `.github/agents/*.agent.md` |
 | Long standards, diagrams, onboarding, or architecture detail | Linked docs |
 
+## Compression pass
+
+Rewrite procedural or narrative guidance as short, observable guardrails.
+
+| Before | After |
+| --- | --- |
+| "Before editing any TypeScript file, inspect the exports, then check each function for documentation, then add missing comments." | "TypeScript exports: JSDoc required." |
+| "Remember that this project uses the internal design system and developers should avoid making new colors or components." | "Use existing design tokens/components; no new palette without approval." |
+
 ## Checklist
 
 - [ ] Remove team history and onboarding essays from always-on instructions.
 - [ ] Remove rules that the model can infer from code.
+- [ ] Remove generated facts the agent can rediscover with search.
 - [ ] Split path-specific rules by file type or directory.
+- [ ] Convert long procedures into declarative guardrails.
 - [ ] Replace copied policy text with links to source-of-truth docs.
 - [ ] Keep examples short and concrete.
 - [ ] Check for conflicts across personal, repo, path-specific, agent, and organization guidance.
+- [ ] Audit whether AgentRC or another readiness/eval check can catch drift.
 - [ ] Re-test one representative task after trimming.

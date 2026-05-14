@@ -16,6 +16,7 @@ Read [`naive-transcript.md`](naive-transcript.md) and identify context that is s
 
 Read [`engineered-transcript.md`](engineered-transcript.md) and compare:
 
+- Could a comment plus inline completion solve a smaller part of the task?
 - Which files are attached?
 - Which context is omitted?
 - Which mode is used first?

@@ -20,10 +20,11 @@ Review areas:
 | Area | What to inspect | Common action |
 | --- | --- | --- |
 | Instructions | Repo, path, prompt, chat mode, agent, and review guidance | Trim, split, or clarify |
+| Instruction drift | Generated instruction files, duplicated guidance, and rules that no longer match code | Run readiness/eval checks, then prune |
 | Source of truth | Architecture docs, standards, issue templates, PR templates | Link concise docs instead of copying long guidance |
-| Tool and MCP setup | Enabled servers, tool descriptions, read/write access | Remove unused tools and document ownership |
+| Tool and MCP setup | Enabled servers, CLI plugins, tool descriptions, read/write access | Remove unused tools and document ownership |
 | Surface routing | IDE, CLI, web, coding agent, and review habits | Match surface to task shape |
-| Measurement | Usage pages, budgets, evals, PR review counts | Identify baseline and owner |
+| Measurement | Usage pages, budgets, traces, BYOK token signals, evals, PR review counts | Identify baseline and owner |
 
 ## Levers
 
@@ -35,6 +36,8 @@ The adoption loop is:
 4. Keep the change only if it improves the outcome.
 5. Share the pattern with the team.
 
+For repositories with many Copilot customization files, add an instruction-readiness pass before writing more guidance. AgentRC-style readiness and eval checks can identify missing context, overgrown instructions, or drift without turning every workshop finding into more always-on prose.
+
 ## Hands-on
 
 Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-morning-audit/README.md).
@@ -42,14 +45,16 @@ Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-mo
 1. Pick one repository or workflow.
 2. Complete the context inventory worksheet.
 3. Complete the instruction diet worksheet for one instruction file or workflow.
-4. Identify three low-risk improvements.
-5. Convert the findings into a 30-day adoption plan.
+4. Run, simulate, or plan one readiness/eval check for instruction quality.
+5. Identify three low-risk improvements.
+6. Convert the findings into a 30-day adoption plan.
 
 ## Checklist
 
 - I can run the audit without exposing sensitive source.
 - I can pick a safe fallback repository.
 - I can identify three low-risk improvements.
+- I can use readiness or eval checks to avoid instruction drift.
 - I can assign owners for measurement and governance.
 - I can turn workshop findings into a 30-day plan.
 
@@ -59,3 +64,5 @@ Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-mo
 - https://docs.github.com/en/copilot/concepts/context/spaces
 - https://docs.github.com/en/copilot/using-github-copilot/coding-agent/about-copilot-coding-agent
 - https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review
+- https://github.com/microsoft/agentrc
+- https://code.visualstudio.com/updates/v1_120

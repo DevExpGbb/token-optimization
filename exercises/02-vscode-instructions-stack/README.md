@@ -11,10 +11,12 @@ Imagine one always-on instruction file contains coding style, frontend accessibi
 ## Steps
 
 1. Keep only stable repo-wide rules in `.github/copilot-instructions.md`.
-2. Move frontend guidance to `.github/instructions/frontend.instructions.md`.
-3. Move test guidance to `.github/instructions/tests.instructions.md`.
-4. Move repeated workflows to `.github/prompts/*.prompt.md`.
-5. Move tool boundaries to a chat mode or MCP README.
+2. Rewrite one long procedure as a short declarative guardrail.
+3. Move frontend guidance to `.github/instructions/frontend.instructions.md`.
+4. Move test guidance to `.github/instructions/tests.instructions.md`.
+5. Move repeated workflows to `.github/prompts/*.prompt.md`.
+6. Move tool boundaries to a chat mode or MCP README.
+7. Identify one readiness or eval check that would catch instruction drift.
 
 ## Output
 

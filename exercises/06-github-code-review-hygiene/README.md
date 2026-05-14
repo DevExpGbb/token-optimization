@@ -9,8 +9,9 @@ Improve Copilot review signal by improving PR shape and review instructions.
 1. Start with a PR that mixes unrelated changes.
 2. Split the change into one reviewable goal.
 3. Rewrite the PR description with problem, approach, risk, and validation.
-4. Draft a path-specific review instruction.
-5. Decide which comments require human review before merge.
+4. Rewrite one verbose review comment into a short severity/action note.
+5. Draft a path-specific review instruction.
+6. Decide which comments require human review before merge.
 
 ## Output
 

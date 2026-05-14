@@ -14,7 +14,8 @@ You need to answer a cross-repository architecture question.
 2. Decide which sources belong in a Space.
 3. Write one ad hoc prompt that pastes too much context.
 4. Write one Space-backed prompt that asks the same question.
-5. Compare answer quality, source traceability, and likely context waste.
+5. Define one cost signal and one quality signal for the comparison.
+6. Compare answer quality, source traceability, and likely context waste.
 
 ## Output
 

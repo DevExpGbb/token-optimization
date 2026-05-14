@@ -15,6 +15,8 @@ Every Copilot workflow has context inputs:
 
 More context is not automatically better. Irrelevant context increases latency, cost exposure, and answer confusion. Some products and models may use caching, summarization, or product-specific accounting, so "repeated context" is a mental model rather than a universal invoice formula. The durable habit is still useful: remove stale context, keep scope clear, and measure outcomes.
 
+Context also accumulates inside a working session. Tool output, terminal logs, file reads, pasted snippets, generated plans, and repeated clarifications can keep shaping later answers after the original subtask is over. When the topic changes, compact, summarize, or restart instead of carrying yesterday's context into today's question.
+
 ## Surface mechanics
 
 The same five levers transfer across VS Code, GitHub Copilot CLI, GitHub.com, coding agent, and code review:
@@ -47,7 +49,8 @@ Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-mo
 2. List every context source you would normally include.
 3. Mark each source as required, useful, stale, redundant, sensitive, or unknown.
 4. Rewrite the request with only the required and useful context.
-5. Add one validation gate before implementation.
+5. Decide whether the next step should continue in the same session, use a compacted handoff, or start fresh.
+6. Add one validation gate before implementation.
 
 ## Checklist
 
@@ -55,6 +58,7 @@ Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-mo
 - I can name the five token optimization levers.
 - I can separate required context from convenient context.
 - I can choose a surface based on task shape.
+- I can decide when to compact, summarize, or restart.
 - I can identify one measurement signal before optimizing.
 
 ## Sources
@@ -63,3 +67,4 @@ Use [`../exercises/08-monday-morning-audit/README.md`](../exercises/08-monday-mo
 - https://docs.github.com/en/copilot/managing-copilot/managing-copilot-as-an-individual-subscriber/about-billing-for-github-copilot
 - https://code.visualstudio.com/docs/copilot/overview
 - https://docs.github.com/en/copilot/concepts/context/spaces
+- https://bthomas2622.github.io/copilot-token-optimization/#best-practices
