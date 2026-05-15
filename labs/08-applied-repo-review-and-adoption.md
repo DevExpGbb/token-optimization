@@ -19,7 +19,7 @@ Review areas:
 
 | Area | What to inspect | Common action |
 | --- | --- | --- |
-| Instructions | Repo, path, prompt, chat mode, agent, and review guidance | Trim, split, or clarify |
+| Instructions | Repo, path, skill, prompt, agent, and review guidance | Trim, split, or clarify |
 | Instruction drift | Generated instruction files, duplicated guidance, and rules that no longer match code | Run readiness/eval checks, then prune |
 | Source of truth | Architecture docs, standards, issue templates, PR templates | Link concise docs instead of copying long guidance |
 | Tool and MCP setup | Enabled servers, CLI plugins, tool descriptions, read/write access | Remove unused tools and document ownership |

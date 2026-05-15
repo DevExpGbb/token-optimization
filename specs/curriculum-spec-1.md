@@ -21,14 +21,14 @@ Audience leaves knowing **what gets metered, where it burns, and which dials the
 
 ### Goal 2 — Apply context-management & context-engineering best practices to existing projects
 Audience can walk into their **own repo on Monday** and apply the practices. Includes:
-- **Repo-level**: `.github/copilot-instructions.md`, `.instructions.md` path-scoped rules, `.prompt.md` files, `.agent.md` custom agents, `.chatmode.md` custom chat modes.
+- **Repo-level**: `.github/copilot-instructions.md`, `.instructions.md` path-scoped rules, `.github/skills/*/SKILL.md` skills, `.prompt.md` files, and `.agent.md` custom agents.
 - **Workspace-level**: `.vscode/mcp.json` (per-repo MCP) vs user-profile MCP, attachment hygiene (`#file`, `#selection`, `#codebase`, drag-and-drop pinned context).
 - **Mode-level**: Ask vs Edit vs Agent vs Plan — when each is the cheap right tool.
 - **Org-level**: Copilot Spaces for curated cross-repo knowledge (replaced Knowledge Bases on Sept 12, 2025 — `https://docs.github.com/en/copilot/concepts/context/spaces`).
 
 ### Goal 3 — Practical, hands-on demo and takeaway exercises
 Every chapter ends with something the reader **does**, not just reads. Includes:
-- A `templates/` directory in the repo with copy-paste starter files for instructions, prompt files, MCP config, and chat modes.
+- A `templates/` directory in the repo with copy-paste starter files for instructions, skills, prompt starters, MCP config, and agents.
 - Before/after exercises per surface (same task, naive flow vs engineered flow, measure the delta).
 - A "Monday morning checklist" the reader can run in <30 minutes against their own repo.
 
@@ -71,8 +71,9 @@ templates/                          # Copy-paste starters (Goal 3)
 │   ├── plan-feature.prompt.md
 │   ├── review-pr.prompt.md
 │   └── triage-issue.prompt.md
-├── chatmodes/
-│   └── planner.chatmode.md         # Custom Plan-style chat mode
+├── skills/
+│   └── repo-review/
+│       └── SKILL.md                # On-demand workflow guidance
 ├── agents/
 │   └── doc-writer.agent.md         # Example custom agent
 └── mcp/
@@ -110,7 +111,7 @@ Each track lab follows the same shape: *Concept -> Surface mechanics -> Levers -
 |------|-------|---------------------|------------------|
 | `labs/00-foundations.md` | Foundations for every Copilot surface | Token mental model, context inputs, quality waste, billing nuance, five levers | Identify context waste in one sample workflow |
 | `labs/01-ide-context-and-prompt-flow.md` | VS Code/IDE track: context and prompt flow | Ask/Edit/Agent/Plan, attachments, `#selection`, `#file`, `#codebase`, chat/session boundaries | Rewrite a broad IDE request into a scoped prompt with deliberate attachments |
-| `labs/02-ide-instructions-tools-and-mcp.md` | VS Code/IDE track: instructions, tools, and MCP | `.github/copilot-instructions.md`, `.instructions.md`, `.prompt.md`, `.chatmode.md`, workspace MCP, model picker | Split a bloated IDE setup into targeted repo, path, prompt, chat mode, and MCP assets |
+| `labs/02-ide-instructions-tools-and-mcp.md` | VS Code/IDE track: instructions, skills, tools, and MCP | `.github/copilot-instructions.md`, `.instructions.md`, `.github/skills/*/SKILL.md`, `.prompt.md`, workspace MCP, model picker | Split a bloated IDE setup into targeted repo, path, skill, prompt, and MCP assets |
 | `labs/03-cli-context-and-tool-output.md` | GHCP CLI track: session context and tool output | `/clear`, `/compact`, focused sessions, command output filtering, prompt discipline, context visibility | Turn a noisy CLI troubleshooting session into a focused low-context workflow |
 | `labs/04-cli-agents-tools-and-cost-control.md` | GHCP CLI track: agents, tools, and cost control | Subagents, MCP/tool scope, model choice, approvals, usage visibility, durable handoffs | Decide when to do work directly, delegate, or summarize before continuing |
 | `labs/05-github-web-context-and-coding-agent.md` | GitHub.com track: web context and coding agent | Repo/issue/PR page context, Copilot Spaces, coding agent issue shape, `copilot/` branches | Convert a vague issue into a scoped coding-agent task with acceptance criteria |
@@ -135,7 +136,7 @@ This replaces the proposed `labs/11` through `labs/18` expansion. The topics rem
 | --- | --- |
 | Current `00` and `01` | `00-foundations.md` |
 | Current `04` and `06`, proposed VS Code modes and attachments labs | `01-ide-context-and-prompt-flow.md` |
-| Current `02`, proposed VS Code instructions/prompts/chat modes and MCP hygiene labs | `02-ide-instructions-tools-and-mcp.md` |
+| Current `02`, proposed VS Code instructions/skills/prompts and MCP hygiene labs | `02-ide-instructions-tools-and-mcp.md` |
 | Current `03` and CLI parts of current `04`/`06` | `03-cli-context-and-tool-output.md` |
 | Current `05`, CLI agents/tools material, and CLI usage visibility | `04-cli-agents-tools-and-cost-control.md` |
 | Proposed GitHub.com surface map, proposed Spaces lab, proposed coding agent lab | `05-github-web-context-and-coding-agent.md` |
@@ -173,7 +174,7 @@ This table is the editorial backbone. Each use-case track should cover the same 
 | **Expensive-mode** | `/delegate`, parallel agents | **Agent mode** with broad `#codebase` | Coding agent on vague issues |
 | **Context hygiene** | `/clear`, `/compact`, `/context` | New chat, attachment pinning, `#codebase` only when needed | Scoped issue body, narrow Space sources |
 | **Persistent rules** | `AGENTS.md`, slash commands | `.github/copilot-instructions.md` + `.instructions.md` | Repo custom instructions (rendered to agent) |
-| **Tool/scope control** | Specialist agents, narrow blast radius | Custom **chat modes**, **MCP per workspace** | Coding-agent allowlists, Space sources |
+| **Tool/scope control** | Specialist agents, narrow blast radius | On-demand **skills**, **MCP per workspace** | Coding-agent allowlists, Space sources |
 | **Measurement** | OTel exporters, `/usage` | VS Code chat history, token telemetry | Org-level usage dashboards, audit log |
 | **Monday-morning win** | Add a `/compact` checkpoint | Add `.github/copilot-instructions.md` | Convert one Slack-thread question into a Space |
 
@@ -205,7 +206,7 @@ Primary sources Copilot should pull from when fleshing out the chapters. Always 
 - `https://github.blog/ai-and-ml/github-copilot/copilot-ask-edit-and-agent-modes-what-they-do-and-when-to-use-them/` — Ashley Willis, May 2, 2025 — mode taxonomy
 - `https://code.visualstudio.com/docs/copilot/customization/custom-instructions` — `.github/copilot-instructions.md` + `.instructions.md` precedence
 - `https://code.visualstudio.com/docs/copilot/customization/prompt-files` — `.prompt.md`
-- `https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes` — `.chatmode.md`
+- `https://skills.md/` — Skills.md contract and on-demand skill loading
 - `https://code.visualstudio.com/docs/copilot/customization/mcp-servers` — workspace vs user MCP config
 - `https://code.visualstudio.com/docs/copilot/reference/copilot-settings` — model picker, token settings
 

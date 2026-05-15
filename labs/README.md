@@ -21,7 +21,7 @@ Developers, technical leads, platform engineers, engineering managers, and AI en
 | --- | --- | --- |
 | [`00`](00-foundations.md) | Shared | Foundations for every Copilot surface |
 | [`01`](01-ide-context-and-prompt-flow.md) | VS Code/IDE | Context and prompt flow |
-| [`02`](02-ide-instructions-tools-and-mcp.md) | VS Code/IDE | Instructions, tools, and MCP |
+| [`02`](02-ide-instructions-tools-and-mcp.md) | VS Code/IDE | Instructions, skills, tools, and MCP |
 | [`03`](03-cli-context-and-tool-output.md) | GHCP CLI | Session context and tool output |
 | [`04`](04-cli-agents-tools-and-cost-control.md) | GHCP CLI | Agents, tools, and cost control |
 | [`05`](05-github-web-context-and-coding-agent.md) | GitHub.com | Web context and coding agent |

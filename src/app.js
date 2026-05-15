@@ -220,7 +220,7 @@ function renderHome() {
               <h3 class="Box-title">VS Code/IDE users</h3>
             </div>
             <div class="Box-body">
-              <p>Modes, attachments, instructions, prompt files, chat modes, and workspace MCP.</p>
+              <p>Modes, attachments, instructions, skills, prompt starters, and workspace MCP.</p>
             </div>
           </a>
           <a class="Box card-link" href="./labs/03-cli-context-and-tool-output.md">

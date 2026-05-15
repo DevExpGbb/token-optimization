@@ -23,8 +23,8 @@ Primary surfaces affected:
 | --- | --- |
 | Stable project purpose, stack, and must-follow rules | `.github/copilot-instructions.md` |
 | Rules for specific languages, directories, or file types | `.github/instructions/**/*.instructions.md` |
-| Repeatable task workflow | `.github/prompts/*.prompt.md` |
-| Specialized workflow guidance loaded on demand | `.github/skills/*/SKILL.md` |
+| Simple reusable chat starter | `.github/prompts/*.prompt.md` |
+| Specialized or multi-step workflow guidance loaded on demand | `.github/skills/*/SKILL.md` |
 | Specialist role with tools and boundaries | `.github/agents/*.agent.md` |
 | Long standards, diagrams, onboarding, or architecture detail | Linked docs |
 
